@@ -1,0 +1,85 @@
+<!-- templates/myapp/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uniway</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        .element-container {
+            margin-bottom: 20px;
+        }
+
+        .element {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        }
+
+        .passengers {
+            font-style: italic;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="element-container">
+        <h1>Uniway</h1>
+
+        <!-- Trips -->
+        <div class="element">
+            <h2>Viagens</h2>
+            {% for trip in trips %}
+                <p>Motorista {{ trip.driver }} viagem de {{ trip.departure_location }} para {{ trip.destination }} - {{ trip.date_time }} ({{ trip.available_seats }} assentos disponíveis)</p>
+            {% endfor %}
+        </div>
+
+        <!-- Users -->
+        <div class="element">
+            <h2>Usuários</h2>
+            {% for user in users %}
+                <p>Usuarios: {{ user.username }}</p>
+            {% endfor %}
+        </div>
+
+        <!-- Rides -->
+        <div class="element">
+            <h2>Caronas</h2>
+            {% for ride in rides %}
+                <p>Motorista: {{ ride.driver.username }} - 
+                    <span class="passengers">
+                        {% for passenger in ride.passengers.all %}
+                            {{ passenger.username }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </span>
+                </p>
+            {% endfor %}
+        </div>
+
+        <!-- Reviews -->
+        <div class="element">
+            <h2>Avaliações</h2>
+            {% for review in reviews %}
+                <p>De: {{ review.reviewer.username }} - Para: {{ review.reviewed_user.username }} - Avaliação: {{ review.rating }} - Comentário: {{ review.comment }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

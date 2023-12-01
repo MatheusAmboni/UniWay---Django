@@ -96,3 +96,6 @@ def create_endereco(request):
         form = EnderecoForm()
     context = {'form': form}
     return render(request, 'create_endereco.html', context)
+
+def sobre_nos(request):
+    return render(request, 'sobre_nos.html')

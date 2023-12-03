@@ -1,87 +1,47 @@
-<!-- templates/myapp/create_trip.html -->
+{% extends 'main.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Viagem</title>
+{% load static %}
 
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+{% block titulo %}
+  Página Cadastro
+{% endblock %}
 
-        form {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 300px;
-            text-align: center;
-        }
+{% block conteudo %}
+        <main>
 
-        h1 {
-            color: #333;
-        }
+            <section class="sign-in-form section-padding">
+                <div class="container">
+                    <div class="row">
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-        }
+                        <div class="col-lg-8 mx-auto col-12">
 
-        input[type="text"], input[type="datetime-local"], input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+                            <h1 class="hero-title text-center mb-5">Criar viagem</h1>
 
-        button {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+                            <div class="row">
+                                <div class="col-lg-8 col-11 mx-auto">
+                                        <form method="post" action="{% url 'create_user' %}">
+                                            {% csrf_token %}
+                                            
+                                 
+                                    
+                                            <div class="form-floating mb-4 p-0">
+                                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                                <label for="password">Email</label>
+                                            </div>
+                                    
+                                        
+                                        <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
+                                            Criar Viagem
+                                        </button>
+                                    </form>
+                                </div>
+                                {{formu.errors}}
+                            </div>
+                            
+                        </div>
 
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
-    <form method="post" action="{% url 'create_trip' %}">
-        {% csrf_token %}
-        <h1>Criar Nova Viagem</h1>
-
-        {{ form.driver.label_tag }}
-        {{ form.driver }}
-
-        {{ form.departure_location.label_tag }}
-        {{ form.departure_location }}
-
-        {{ form.destination.label_tag }}
-        {{ form.destination }}
-
-        {{ form.date_time.label_tag }}
-        {{ form.date_time }}
-
-        {{ form.available_seats.label_tag }}
-        {{ form.available_seats }}
-
-        <button type="submit">Criar Viagem</button>
-    </form>
-</body>
-</html>
+                    </div>
+                </div>
+            </section>
+        </main>
+{% endblock %}

@@ -97,5 +97,14 @@ def create_endereco(request):
     context = {'form': form}
     return render(request, 'create_endereco.html', context)
 
+def find_trips(request):
+    return render(request, 'find_trips.html')
+
+def find_rides(request):
+    return render(request, 'find_rides.html')
+
+def login(request):
+    return render(request, 'login.html')
+
 def sobre_nos(request):
     return render(request, 'sobre_nos.html')

@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block titulo %}
+  Página Login
+{% endblock %}
+
+{% block conteudo %}
+  <h2>Caronas disponíveis</h2>
+  <div class="viagem-lista">
+    {% for trip in trips %}
+      <div class="viagem-item">
+        <p class="motorista">Motorista {{ trip.driver }}</p>
+        <p class="detalhes-viagem">De {{ trip.departure_location }} para {{ trip.destination }} - {{ trip.date_time }}</p>
+        <p class="assentos-disponiveis">Assentos disponíveis: {{ trip.available_seats }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="crie-viagem">
+    <h2>Crie sua carona também</h2>
+    <p>Ainda não encontrou a carona que precisa? Crie sua própria carona agora!</p>
+    <a href="/createride/" class="botao-criar-viagem">Criar Carona</a>
+  </div>
+{% endblock %}

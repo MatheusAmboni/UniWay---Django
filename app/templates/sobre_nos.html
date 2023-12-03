@@ -6,62 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós</title>
 
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-        }
-
-        section {
-            padding: 2em;
-        }
-
-        .element {
-            background-color: #fff;
-            padding: 1.5em;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        p {
-            color: #666;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
-    <header>
-        <h1>Sua Empresa</h1>
-    </header>
 
-    <section id="about">
-        <div class="element">
-            <h2>Sobre Nós</h2>
-            <p>Adicione aqui informações sobre a sua organização ou projeto. Conte a história, missão, visão, valores, etc.</p>
+
+    <section class="team section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12">
+                    <h2 class="mb-5">Conheça a <span>equipe</span></h2>
+                </div>
+
+                <div class="col-lg-4 mb-4 col-12">
+                    <div class="team-thumb d-flex align-items-center">
+                        <!-- <img src="../static/images/im1.jpg" class="img-fluid custom-circle-image team-image me-4" alt=""> -->
+
+                        <div class="team-info">
+                            <h5 class="mb-0">Matheus Costa Amboni</h5>
+                            <strong class="text-muted">CEO (Chief Executive <br>Officer)</strong>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn custom-modal-btn" data-bs-toggle="modal" data-bs-target="#don">
+                              <i class="bi-plus-circle-fill"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4 col-12">
+                    <div class="team-thumb d-flex align-items-center">
+                        <!-- <img src="../static/images/im1.jpg" class="img-fluid custom-circle-image team-image me-4" alt=""> -->
+
+                        <div class="team-info">
+                            <h5 class="mb-0">Moises Martins</h5>
+                            <strong class="text-muted">CTO (Chief Technical <br>Officer)</strong>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn custom-modal-btn" data-bs-toggle="modal" data-bs-target="#kelly">
+                              <i class="bi-plus-circle-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-
-    <footer>
-        &copy; 2023 Sua Empresa. Todos os direitos reservados.
-    </footer>
 </body>
 </html>

@@ -1,0 +1,106 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: deepskyblue;
+    color: #fff;
+    padding: 2em;
+    margin: 0px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+header img {
+    max-width: 200px;
+}
+
+header div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+header button:hover {
+    background-color: #2980b9;
+}
+
+section {
+    padding-top: 100%;
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 500px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.element {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #fff;
+}
+
+.passengers {
+    font-style: italic;
+    color: #777;
+}
+
+.btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+footer div {
+    flex: 0 0 30%;
+    margin-bottom: 20px;
+}
+
+.partner-logo {
+    max-width: 50px;
+    margin: 0 10px;
+}

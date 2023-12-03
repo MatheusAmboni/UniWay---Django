@@ -45,7 +45,7 @@
         <!-- Sobre Nós -->
         <div class="element">
             <h2>Sobre Nós</h2>
-            <a class="btn" href="{% url 'sobre_nos' %}">Sobre nós</a>
+            <a class="custom-btn" href="{% url 'sobre_nos' %}">Sobre nós</a>
         </div>
     </section>
 
@@ -56,7 +56,7 @@
             {% for trip in trips %}
                 <p>Motorista {{ trip.driver }}: de {{ trip.departure_location }} para {{ trip.destination }} - {{ trip.date_time }} ({{ trip.available_seats }} assentos disponíveis)</p>
             {% endfor %}
-            <a class="btn" href="{% url 'create_trip' %}">Criar Nova Viagem</a>
+            <a class="custom-btn" href="{% url 'create_trip' %}">Criar Nova Viagem</a>
         </div>
     </section>
 
@@ -83,7 +83,7 @@
                     </span>
                 </p>
             {% endfor %}
-            <a class="btn" href="{% url 'create_ride' %}">Oferecer Carona</a>
+            <a class="custom-btn" href="{% url 'create_ride' %}">Oferecer Carona</a>
         </div>
     </section>
 
@@ -94,7 +94,7 @@
             {% for review in reviews %}
                 <p>De: {{ review.reviewer.username }} - Para: {{ review.reviewed_user.username }} - Avaliação: {{ review.rating }} - Comentário: {{ review.comment }}</p>
             {% endfor %}
-            <a class="btn" href="{% url 'create_review' %}">Deixar Avaliação</a>
+            <a class="custom-btn" href="{% url 'create_review' %}">Deixar Avaliação</a>
         </div>
     </section>
 {% endblock %}

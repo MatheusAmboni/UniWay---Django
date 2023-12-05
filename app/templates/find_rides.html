@@ -9,35 +9,41 @@
 {% block conteudo %}
 
 
+<section>
+{% if user.is_authenticated %}
+  <div class="viagem-container">
+    <h2>Caronas Disponíveis para as seguintes viagens:</h2>
 
-  {% if user.is_authenticated %}
-    <h2>Caronas Disponíveis para as seguintes viagens:</h2>
-    <h2>Caronas Disponíveis para as seguintes viagens:</h2>
     <div class="viagem-lista">
-      {% for trip in trips %}
-        <div class="viagem-item">
-          <p class="motorista">Motorista {{ trip.driver.username }}</p>
-          <p class="detalhes-viagem">De {{ trip.departure_location }} para {{ trip.destination }} - {{ trip.date_time }}</p>
-          <p class="assentos-disponiveis">Assentos disponíveis: {{ trip.available_seats }}</p>
-          <a href="" class="adicionar-viagem-btn">Adicionar Viagem</a>
-        </div>
-      {% endfor %}
+      <div class="viagem-grid">
+        {% for trip in trips %}
+          <div class="viagem-item">
+            <p class="motorista"><i class="fas fa-user"></i> Motorista: {{ trip.driver.username }}</p>
+            <p class="detalhes-viagem"><i class="fas fa-map-marker-alt"></i> De: {{ trip.departure_location.cidade }}</p>
+            <p class="detalhes-viagem2"><i class="fas fa-map-marker-alt"></i> Para: {{ trip.destination.cidade }}</p>
+            <p class="detalhes-viagem3"><i class="far fa-clock"></i> Data e Hora: {{ trip.date_time }}</p>
+            <p class="assentos-disponiveis"><i class="fas fa-chair"></i> Assentos: {{ trip.available_seats }}</p>
+            <a href="" class="adicionar-viagem-btn"><i class="fas fa-plus"></i> Adicionar Viagem</a>
+          </div>
+        {% endfor %}
+      </div>
+    
+      <div class="crie-viagem">
+        <h2>Vai viajar? Crie a sua viagem</h2>
+        <p>Ainda não encontrou a carona que precisa? Crie sua própria viagem agora e convide alguém para ir de carona contigo!</p>
+        <a href="/create_trip/" class="botao-criar-viagem">Criar Viagem</a>
+      </div>
     </div>
-
-    <div class="crie-viagem">
-      <h2>Vai viajar? Crie a sua viajem</h2>
-      <p>Ainda não encontrou a carona que precisa? Crie sua própria viagem agora e convide alguém pra ir de carona contigo!</p>
-      <a href="/createtrip/" class="botao-criar-viagem">Criar Viagem</a>
-    </div>
-  {% else %}
-  <h2>Viagens Disponíveis</h2>
-
+    
+  </div>
+{% else %}
   <div class="crie-viagem">
-    <h2>Faça login ou cadastre para acessar as viagens</h2>
+    <h2>Viagens Disponíveis</h2>
+    <h2>Faça login ou cadastre-se para acessar as viagens</h2>
     <a href="/login/" class="botao-criar-viagem">Login</a>
   </div>
-  {% endif %}
+{% endif %}
 
-
+</section>
 
 {% endblock %}

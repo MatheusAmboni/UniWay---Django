@@ -19,33 +19,24 @@
 
                             <div class="row">
                                 <div class="col-lg-8 col-11 mx-auto">
-                                        <form method="post" action="{% url 'create_user' %}" onsubmit="return validateForm()">
+                                        <form method="post" action="{% url 'create_trip' %}">
                                             {% csrf_token %}
                                     
-                                            <div class="form-floating mb-4 p-0">
-                                                <input name="" id="" class="form-control" placeholder="" required  {{ form.driver }}
-                                                <label for="">Motorista</label>
-                                            </div>
-
-                                            <div class="form-floating mb-4 p-0">
-                                                <input type="" name="" id="" class="form-control" placeholder="" required {{ form.departure_location }}
-                                                <label for="">Local de saída</label>
-                                            </div>
-
-                                            <div class="form-floating mb-4 p-0">
-                                                <input type="" name="" id="" class="form-control" placeholder="" required {{ form.destination }}
-                                                <label for="">Local de chegada</label>
-                                            </div>
-
-                                            <div class="form-floating mb-4 p-0">
-                                                <input type="" name="" id="" class="form-control" placeholder="" required {{ form.date_time }}
-                                                <label for="">Data e Hora</label>
-                                            </div>
-
-                                            <div class="form-floating mb-4 p-0">
-                                                <input type="" name="" id="" class="form-control" placeholder="" required  {{ form.available_seats }}
-                                                <label for="">Lugares disponíveis</label>
-                                            </div>
+                                            {{ form.driver.label_tag }}
+                                            {{ form.driver }}
+                                    
+                                            {{ form.departure_location.label_tag }}
+                                            {{ form.departure_location }}
+                                    
+                                            {{ form.destination.label_tag }}
+                                            {{ form.destination }}
+                                    
+                                            {{ form.date_time.label_tag }}
+                                            {{ form.date_time }}
+                                    
+                                            {{ form.available_seats.label_tag }}
+                                            {{ form.available_seats }}
+                                           
                                     
                                         
                                         <button type="submit" class="btn custom-btn form-control mt-4 mb-3">

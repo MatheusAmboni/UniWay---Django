@@ -11,6 +11,14 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['is_passenger', 'username', 'idade', 'email', 'senha', 'endereco']
 
+class LoginForm(forms.Form):
+    is_passenger = forms.BooleanField()
+    username = forms.CharField()
+    idade = forms.IntegerField()
+    email = forms.EmailField()
+    senha = forms.CharField()
+    endereco = forms.CharField()
+
 class CarForm(forms.ModelForm):
     class Meta:
         model = Car
@@ -25,10 +33,6 @@ class RideForm(forms.ModelForm):
     class Meta:
         model = Ride
         fields = ['driver', 'passengers', 'start_location', 'end_location']
-
-    def __init__(self, *args, **kwargs):
-        super(RideForm, self).__init__(*args, **kwargs)
-        self.fields['passengers'].queryset = User.objects.filter(is_passenger=True)
 
 class ReviewForm(forms.ModelForm):
     class Meta:

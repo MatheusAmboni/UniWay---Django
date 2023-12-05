@@ -1,0 +1,71 @@
+.services-section {
+  text-align: center;
+  padding: 50px;
+}
+
+.section-title {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.service-box {
+  display: inline-block;
+  width: 30%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 0 15px;
+  text-align: left;
+}
+
+.service-title {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.service-description {
+  font-size: 14px;
+  color: #666;
+}
+
+.viagem-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.motorista {
+  font-weight: bold;
+  color: #333;
+}
+
+.detalhes-viagem {
+  color: #555;
+}
+
+.assentos-disponiveis {
+  color: #27ae60;
+}
+
+.adicionar-viagem-btn {
+  display: block;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

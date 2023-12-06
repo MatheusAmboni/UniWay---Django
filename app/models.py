@@ -27,12 +27,6 @@ class Trip(models.Model):
     date_time = models.DateTimeField()
     available_seats = models.IntegerField()
 
-class Ride(models.Model):
-    driver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="rides_as_driver")
-    passengers = models.ManyToManyField(User, related_name="rides_as_passenger")
-    start_location = models.ForeignKey(Endereco, related_name="rides_start_location", on_delete=models.CASCADE)
-    end_location = models.ForeignKey(Endereco, related_name="rides_end_location", on_delete=models.CASCADE)
-
 class Review(models.Model):
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE)
     reviewed_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews_received")

@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import User, Trip, Ride, Review, Car, Endereco
+from .models import User, Trip, Review, Car, Endereco
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
-from .forms import LoginForm, UserForm, TripForm, RideForm, ReviewForm, CarForm, EnderecoForm
+from .forms import LoginForm, UserForm, TripForm, ReviewForm, CarForm, EnderecoForm
 
 def index(request):
     users = User.objects.all()
     trips = Trip.objects.all()
-    rides = Ride.objects.all()
     reviews = Review.objects.all()
     car = Car.objects.all()
     endereco = Endereco.objects.all()
@@ -15,7 +14,6 @@ def index(request):
     context = {
         'users': users,
         'trips': trips,
-        'rides': rides,
         'reviews': reviews,
         'car': car,
         'endereco': endereco,
@@ -45,22 +43,6 @@ def create_trip(request):
         form = TripForm()
     context = {'form': form}
     return render(request, 'create_trip.html', context)
-
-def create_ride(request, trip_id):
-    trip = Trip.objects.get(pk=trip_id)
-
-    if request.method == 'POST':
-        form = RideForm(request.POST)
-        if form.is_valid():
-            ride = form.save(commit=False)
-            ride.trip = trip
-            ride.save()
-            messages.success(request, 'Carona criada com sucesso!')
-            return redirect('index')
-    else:
-        form = RideForm()
-    context = {'form': form, 'trip': trip}
-    return render(request, 'create_ride.html', context)
 
 def create_review(request):
     if request.method == 'POST':
@@ -99,15 +81,13 @@ def create_endereco(request):
     return render(request, 'create_endereco.html', context)
 
 
-def find_rides(request):
+def find_trips(request):
     trips = Trip.objects.all()
-    rides = Ride.objects.all()
 
     context = {
         'trips': trips,
-        'rides': rides,
     }
-    return render(request, 'find_rides.html', context)
+    return render(request, 'find_trips.html', context)
 
 
 def sobre_nos(request):

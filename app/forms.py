@@ -1,5 +1,5 @@
 from django import forms
-from .models import Endereco, User, Car, Trip, Ride, Review
+from .models import Endereco, User, Car, Trip, Review
 
 class EnderecoForm(forms.ModelForm):
     class Meta:
@@ -28,11 +28,6 @@ class TripForm(forms.ModelForm):
     class Meta:
         model = Trip
         fields = ['driver', 'departure_location', 'destination', 'date_time', 'available_seats']
-
-class RideForm(forms.ModelForm):
-    class Meta:
-        model = Ride
-        fields = ['driver', 'passengers', 'start_location', 'end_location']
 
 class ReviewForm(forms.ModelForm):
     class Meta:

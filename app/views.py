@@ -130,8 +130,10 @@ def suasviagens(request):
 def remove_trip_view(request, trip_id):
     trip = get_object_or_404(Trip, id=trip_id)
     
-    trip.delete()
-    
+    trip.available_seats += 1
+    trip.passengers = ''
+    trip.save()
+
     # Redirecione para a página de viagens do usuário
     return redirect('../../suasviagens')
 

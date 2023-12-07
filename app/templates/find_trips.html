@@ -17,16 +17,22 @@
     <div class="viagem-lista">
       <div class="viagem-grid">
         {% for trip in trips %}
-            {% if trip.available_seats >= 1 %}
-                <div class="viagem-item">
-                    <p class="motorista"><i class="fas fa-user"></i> Motorista: {{ trip.driver.username }}</p>
-                    <p class="detalhes-viagem"><i class="fas fa-map-marker-alt"></i> De: {{ trip.departure_location.cidade }}</p>
-                    <p class="detalhes-viagem2"><i class="fas fa-map-marker-alt"></i> Para: {{ trip.destination.cidade }}</p>
-                    <p class="detalhes-viagem3"><i class="far fa-clock"></i> Data e Hora: {{ trip.date_time }}</p>
-                    <p class="assentos-disponiveis"><i class="fas fa-chair"></i> Assentos: {{ trip.available_seats }}</p>
-                    <a href="#" class="adicionar-viagem-btn" onclick="agendarCarona({{trip.id}})"><i class="fas fa-plus"></i> Agendar Carona</a>
-                </div>
+        {% if trip.available_seats >= 1 %}
+        <div class="viagem-item">
+            <p class="motorista"><i class="fas fa-user"></i> Motorista: {{ trip.driver.username }}</p>
+            <p class="detalhes-viagem"><i class="fas fa-map-marker-alt"></i> De: {{ trip.departure_location.cidade }}</p>
+            <p class="detalhes-viagem2"><i class="fas fa-map-marker-alt"></i> Para: {{ trip.destination.cidade }}</p>
+            <p class="detalhes-viagem3"><i class="far fa-clock"></i> Data e Hora: {{ trip.date_time }}</p>
+            <p class="assentos-disponiveis"><i class="fas fa-chair"></i> Assentos: {{ trip.available_seats }}</p>
+            
+            {% if user.username == trip.passengers %}
+                <p>Você escolheu esta viagem.</p>
+            {% else %}
+                <a href="#" class="adicionar-viagem-btn" onclick="agendarCarona({{trip.id}})"><i class="fas fa-plus"></i> Agendar Carona</a>
             {% endif %}
+        </div>
+        {% endif %}
+    
         {% endfor %}
     </div>
     

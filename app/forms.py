@@ -12,12 +12,12 @@ class UserForm(forms.ModelForm):
         fields = ['is_passenger', 'username', 'idade', 'email', 'senha', 'endereco']
 
 class LoginForm(forms.Form):
-    is_passenger = forms.BooleanField()
+    # is_passenger = forms.BooleanField()
     username = forms.CharField()
-    idade = forms.IntegerField()
-    email = forms.EmailField()
+    # idade = forms.IntegerField()
+    # email = forms.EmailField()
     senha = forms.CharField()
-    endereco = forms.CharField()
+    # endereco = forms.CharField()
 
 class CarForm(forms.ModelForm):
     class Meta:

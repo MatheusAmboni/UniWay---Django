@@ -17,16 +17,19 @@
     <div class="viagem-lista">
       <div class="viagem-grid">
         {% for trip in trips %}
-          <div class="viagem-item">
-            <p class="motorista"><i class="fas fa-user"></i> Motorista: {{ trip.driver.username }}</p>
-            <p class="detalhes-viagem"><i class="fas fa-map-marker-alt"></i> De: {{ trip.departure_location.cidade }}</p>
-            <p class="detalhes-viagem2"><i class="fas fa-map-marker-alt"></i> Para: {{ trip.destination.cidade }}</p>
-            <p class="detalhes-viagem3"><i class="far fa-clock"></i> Data e Hora: {{ trip.date_time }}</p>
-            <p class="assentos-disponiveis"><i class="fas fa-chair"></i> Assentos: {{ trip.available_seats }}</p>
-            <a href="" class="adicionar-viagem-btn"><i class="fas fa-plus"></i> Agendar Carona</a>
-          </div>
+            {% if trip.available_seats >= 1 %}
+                <div class="viagem-item">
+                    <p class="motorista"><i class="fas fa-user"></i> Motorista: {{ trip.driver.username }}</p>
+                    <p class="detalhes-viagem"><i class="fas fa-map-marker-alt"></i> De: {{ trip.departure_location.cidade }}</p>
+                    <p class="detalhes-viagem2"><i class="fas fa-map-marker-alt"></i> Para: {{ trip.destination.cidade }}</p>
+                    <p class="detalhes-viagem3"><i class="far fa-clock"></i> Data e Hora: {{ trip.date_time }}</p>
+                    <p class="assentos-disponiveis"><i class="fas fa-chair"></i> Assentos: {{ trip.available_seats }}</p>
+                    <a href="#" class="adicionar-viagem-btn" onclick="agendarCarona({{trip.id}})"><i class="fas fa-plus"></i> Agendar Carona</a>
+                </div>
+            {% endif %}
         {% endfor %}
-      </div>
+    </div>
+    
     
       <div class="crie-viagem">
         <h2>Vai viajar? Crie a sua viagem</h2>
@@ -44,5 +47,34 @@
 {% endif %}
 
 </section>
+
+<script>
+    function agendarCarona(tripId) {
+        // Faça uma solicitação AJAX para a visualização 'agendar_carona'
+        fetch(`/agendar_carona/${tripId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Atualize o número de assentos no frontend
+                const assentosElement = document.getElementById(`assentos-${tripId}`);
+                const assentos = parseInt(assentosElement.innerText.split(': ')[1]);
+                assentosElement.innerText = `Assentos: ${assentos - 1}`;
+            } else {
+                // Lógica para tratamento de erro, se necessário
+            }
+        })
+        .catch(error => {
+            console.error('Erro na solicitação AJAX:', error);
+        });
+    }
+</script>
+
 
 {% endblock %}

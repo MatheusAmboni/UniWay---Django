@@ -18,9 +18,13 @@ from django.urls import include, path
 from django.contrib.auth.views import LoginView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404
+from app.views import pagina_nao_encontrada
 
+handler404 = 'app.views.pagina_nao_encontrada'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls')),
+    
 ]

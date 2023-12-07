@@ -3,6 +3,8 @@ from .models import User, Trip, Review, Car, Endereco
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from .forms import LoginForm, UserForm, TripForm, ReviewForm, CarForm, EnderecoForm
+from django.shortcuts import get_object_or_404, redirect
+from django.http import JsonResponse
 
 def index(request):
     users = User.objects.all()
@@ -25,7 +27,6 @@ def create_user(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Usuário criado com sucesso!')
             return redirect('index')
     else:
         form = UserForm()
@@ -93,23 +94,46 @@ def find_trips(request):
 def sobre_nos(request):
     return render(request, 'sobre_nos.html')
 
-def sign_in(request):
-    if request.method == 'GET':
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['senha']
+            user = authenticate(request, username=username, password=password)
+            if user:
+                login(request, user)    
+                return redirect('index')
+    else:
         form = LoginForm()
-        return render(request,'login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
+
+def agendar_carona(request, trip_id):
+    # Lógica para diminuir o número de assentos
+    trip = Trip.objects.get(id=trip_id)
+    if request.user.username != trip.passengers:
+        trip.available_seats -= 1
+    trip.passengers = request.user.username
+    trip.save()
+
+    # Responda com um JSON indicando sucesso ou falha
+    return JsonResponse({'success': True})
+
+def suasviagens(request):
+    trips = Trip.objects.all()
+
+    context = {
+        'trips': trips,
+    }
+    return render(request, 'suasviagens.html', context)
+
+def remove_trip_view(request, trip_id):
+    trip = get_object_or_404(Trip, id=trip_id)
     
-    elif request.method == 'POST':
-  
-        # AuthenticationForm_can_also_be_used__
-  
-        username = request.POST['username']
-        password = request.POST['senha']
-        user = authenticate(request, username = username, password = password)
-        if user is not None:
-            form = login(request, user)
-            messages.success(request, f' welcome {username} !!')
-            return redirect('index')
-        else:
-            messages.info(request, f'account done not exit plz sign in')
-    form = LoginForm()
-    return render(request, 'login.html', {'form':form})
+    trip.delete()
+    
+    # Redirecione para a página de viagens do usuário
+    return redirect('../../suasviagens')
+
+def pagina_nao_encontrada(request, exception):
+    return render(request, '404.html', status=404)

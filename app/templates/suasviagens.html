@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block titulo %}
+  Página Login
+{% endblock %}
+
+{% block conteudo %}
+
+
+<section>
+{% if user.is_authenticated %}
+  <div class="viagem-container">
+    <h2>Estas são as suas viagens:</h2>
+
+    <div class="viagem-lista">
+      <div class="viagem-grid">
+        {% for trip in trips %}
+            {% if user.username == trip.passengers %}
+                <div class="viagem-item">
+                    <p class="detalhes-viagem"><i class="fas fa-map-marker-alt"></i> De: {{ trip.departure_location.cidade }}</p>
+                    <p class="detalhes-viagem2"><i class="fas fa-map-marker-alt"></i> Para: {{ trip.destination.cidade }}</p>
+                    <p class="detalhes-viagem3"><i class="far fa-clock"></i> Data e Hora: {{ trip.date_time }}</p>
+                    <a href="{% url 'remove_trip' trip.id %}" class="botao-remover-viagem">Remover</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    
+  </div>
+{% else %}
+  <div class="crie-viagem">
+    <h2>Faça login ou cadastre-se para acessar as suas viagens</h2>
+    <a href="/login/" class="botao-criar-viagem">Login</a>
+  </div>
+{% endif %}
+
+</section>
+
+{% endblock %}

@@ -21,7 +21,9 @@ class Car(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Trip(models.Model):
+    id = models.AutoField(primary_key=True)
     driver = models.ForeignKey(User, on_delete=models.CASCADE)
+    passengers = models.CharField(max_length=255, blank=True)
     departure_location = models.ForeignKey(Endereco, related_name="trips_departure", on_delete=models.CASCADE)
     destination = models.ForeignKey(Endereco, related_name="trips_destination", on_delete=models.CASCADE)
     date_time = models.DateTimeField()

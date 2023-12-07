@@ -24,15 +24,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/sobrenos/">Sobre Nós</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/suasviagens/">Suas viagens</a>
+                        </li>
                     </ul>
 
                     <div class="d-none d-lg-block">
                         {% if user.is_authenticated %}
-                        <a href="/logout" class="bi-box-arrow-right custom-icon me-3"></a>
+                            <p class="float-start me-3">{{ request.user.username }}</p>
+                            <a href="/logout" class="bi-box-arrow-right custom-icon"></a>
                         {% else %}
-                        <a href="/login" class="bi-person custom-icon me-3"></a>
+                            <a href="/login" class="float-end bi-person custom-icon"></a>
                         {% endif %}
                     </div>
+                    
                 </div>
             </div>
         </nav>
